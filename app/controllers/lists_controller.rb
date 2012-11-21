@@ -3,7 +3,7 @@ class ListsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def show
-  	@list = List.find(params[:id])
+  		@list = List.find(params[:id])
 	end
 
 	def new
@@ -42,4 +42,13 @@ class ListsController < ApplicationController
 	    end
 	end
 
+	def destroy
+		@list = List.find(params[:id])
+		@list.destroy
+
+		respond_to do |format|
+		  format.html { redirect_to :root, notice: 'List was successfully deleted.'  }
+		  format.json { head :no_content }
+		end
+	end
 end
