@@ -1,9 +1,15 @@
+<% if @lists.empty? %>
+	<h2>You have no lists</h2>
+<% else %>
+	<h2>My Lists</h2>
+	<ul>
+	  <% @lists.each do |list| %>
+	    <li><%= link_to list.name, list %><br />
 
-<h2>My Lists</h2>
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list %><br />
-
-    </li>
-  <% end %>
-</ul>
+	    </li>
+	  <% end %>
+	</ul>
+<% end %>
+<br />
+<br />
+<p><%= link_to "Add a list", new_list_path %> </p>
