@@ -49,4 +49,15 @@ class ItemsController < ApplicationController
 	    end
 	end
 
+	def destroy
+		@list = List.find(params[:list_id])
+		@item = Item.find(params[:id])
+		@item.destroy
+
+		respond_to do |format|
+		  format.html { redirect_to @list, notice: 'Item was successfully deleted.'  }
+		  format.json { head :no_content }
+		end
+	end
+
 end

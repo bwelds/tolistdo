@@ -2,5 +2,8 @@
 
 <br />
 <br />
-<p><%= link_to "Edit item", edit_list_item_path(@list, @item) %></p>
+<p>
+	<%= link_to "Edit item", edit_list_item_path(@list, @item) %> | 
+	<%=  link_to "Delete item", list_item_path(@list, @item), :method => 'DELETE' %>
+</p>
 <p><%= link_to "Back to list", :back %></p>
