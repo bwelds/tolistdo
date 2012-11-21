@@ -9,6 +9,7 @@ group :test do
 end
 group :development do
   gem 'pg'
+  gem 'quiet_assets'
 end
 group :production do
   gem 'pg'

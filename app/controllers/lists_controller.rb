@@ -24,4 +24,22 @@ class ListsController < ApplicationController
 		end  
 	end
 
+	def edit
+    	@list = List.find(params[:id])
+  	end
+
+  	def update
+	    @list = List.find(params[:id])
+
+	    respond_to do |format|
+	      if @list.update_attributes(params[:list])
+	        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+	        format.json { head :no_content }
+	      else
+	        format.html { render action: "edit" }
+	        format.json { render json: @list.errors, status: :unprocessable_entity }
+	      end
+	    end
+	end
+
 end
