@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
-  attr_accessible :email, :username, :login
+  attr_accessible :email, :username, :login, :id
   
   	def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
@@ -23,6 +23,6 @@ class User < ActiveRecord::Base
       end
     end
 
-
+  has_many :lists
 
 end

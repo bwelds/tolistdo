@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Myapp" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "tolistdo" %></title>
     <meta name="description" content="">
     <meta name="author" content="">
     <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -15,7 +15,7 @@
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
-          <%= link_to "Home", root_path, :class => 'brand' %>
+          <%= link_to "tolistdo", root_path, :class => 'brand' %>
 			<ul class="nav">
 			  <%= render 'devise/menu/registration_items' %>
 			  <%= render 'devise/menu/login_items' %>
