@@ -1,4 +1,9 @@
-<p>
-	<h1><%= @list.name %></h1>
-	
-</p>
+<h2><%= @list.name %></h2>
+<ul>
+	<% @list.items.each do |item| %>
+		<li><%= link_to item.title, list_item_path(@list, item) %></li> 
+	<% end %>
+</ul>
+<br />
+<br />
+<p><%= link_to "Add an item", new_list_item_path(@list) %> </p>
