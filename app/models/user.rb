@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :rememberable, :trackable, :validatable #, :recoverable, :confirmable
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
