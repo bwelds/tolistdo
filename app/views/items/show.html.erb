@@ -1,6 +1,20 @@
 <h2><%= @item.title %></h2>
 
 <br />
+Priority: 
+<%= case
+when @item.priority == 3
+  'High'
+when @item.priority == 2
+  'Medium'
+when @item.priority == 1
+  'Low'
+end %>
+<br />
+Due Date: <%= @item.due_date.present? ? (l @item.due_date.to_date, :format => :long) : "-" %><br />
+
+Status: <%= @item.completed ? "Completed" : "Incomplete" %>
+<br />
 <br />
 <p>
 	<%= link_to "Edit item", edit_list_item_path(@list, @item) %> | 

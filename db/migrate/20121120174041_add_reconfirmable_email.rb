@@ -1,6 +1,6 @@
 class AddReconfirmableEmail < ActiveRecord::Migration
   
-  def up
+  def change
   	change_table(:users) do |t|
 	  	## Confirmable
 	   
@@ -8,6 +8,4 @@ class AddReconfirmableEmail < ActiveRecord::Migration
 	end
   end
 
-  def down
-  end
 end

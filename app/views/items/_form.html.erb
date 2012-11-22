@@ -13,8 +13,22 @@
 	<% end %>
 
 	<div class="field">
-		<%= f.label :title %>:<br />
+		<%= f.label :title %>
   		<%= f.text_field :title %>
+  	</div>
+	<div class="field">
+		<%= f.label :priority %>
+  		<%= f.radio_button(:priority, 3) %> High
+		<%= f.radio_button(:priority, 2) %> Medium
+		<%= f.radio_button(:priority, 1) %> Low
+  	</div>
+  	<div class="field">
+		<%= f.label :due_date %>
+  		<%= f.date_select :due_date, :default => 1.days.from_now, :start_year => Time.now.year, :order => [:month, :day, :year] %>
+  	</div>
+	<div class="field">
+		<%= f.label :completed %>
+  		<%= f.check_box :completed %>
   	</div>
 	<div class="field">
 		

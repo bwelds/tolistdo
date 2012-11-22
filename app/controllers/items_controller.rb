@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
 
 	    respond_to do |format|
 	      if @item.update_attributes(params[:item])
-	        format.html { redirect_to @list, notice: 'Item was successfully updated.' }
+	        format.html { redirect_to list_item_path(@list, @item), notice: 'Item was successfully updated.' }
 	        format.json { head :no_content }
 	      else
 	        format.html { render action: "edit" }
