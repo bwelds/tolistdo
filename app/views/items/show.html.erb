@@ -9,6 +9,8 @@ when @item.priority == 2
   'Medium'
 when @item.priority == 1
   'Low'
+else
+	'None'
 end %>
 <br />
 Due Date: <%= @item.due_date.present? ? (l @item.due_date.to_date, :format => :long) : "-" %><br />
