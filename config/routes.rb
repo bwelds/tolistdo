@@ -35,8 +35,8 @@ Tolistdo::Application.routes.draw do
   #   end
 
   resources :lists do
-    resources :items
-end
+    resources :items 
+  end
 
   # Sample resource route with more complex sub-resources
   #   resources :products do
