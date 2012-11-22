@@ -1,7 +1,7 @@
 <h2><%= @list.name %></h2>
 <ul>
 	<% @list.items.each do |item| %>
-		<li><%= item.completed %><%= link_to item.title, list_item_path(@list, item) %></li> 
+		<li><%= check_box_tag :completed, "1", item.completed? %>  <%= link_to item.title, list_item_path(@list, item) %></li> 
 	<% end %>
 </ul>
 <br />
