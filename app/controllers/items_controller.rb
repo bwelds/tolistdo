@@ -2,20 +2,27 @@ class ItemsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def show
-		@list = List.find(params[:list_id])
-  		@item = Item.find(params[:id])
-  		
+		@list = current_user.lists.find(params[:list_id])
+  		@item = @list.items.find(params[:id])
+  		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 	end
 
 	def new
-		@list = List.find(params[:list_id])
-		@item = Item.new
-
+		@list = current_user.lists.find(params[:list_id])
+		@item = @list.items.new
+		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 	end
 
 	def create
-		@list = List.find(params[:list_id])
-		@item = Item.new(params[:item])
+		@list = current_user.lists.find(params[:list_id])
+		@item = @list.items.new(params[:item])
+		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 
 		respond_to do |format|
   			if @item.save
@@ -30,13 +37,19 @@ class ItemsController < ApplicationController
 
 
 	def edit
-    	@list = List.find(params[:list_id])
-  		@item = Item.find(params[:id])
+    	@list = current_user.lists.find(params[:list_id])
+  		@item = @list.items.find(params[:id])
+  		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
   	end
 
   	def update
-	    @list = List.find(params[:list_id])
-  		@item = Item.find(params[:id])
+	    @list = current_user.lists.find(params[:list_id])
+  		@item = @list.items.find(params[:id])
+  		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 
 	    respond_to do |format|
 	      if @item.update_attributes(params[:item])
@@ -50,8 +63,11 @@ class ItemsController < ApplicationController
 	end
 
 	def destroy
-		@list = List.find(params[:list_id])
-		@item = Item.find(params[:id])
+		@list = current_user.lists.find(params[:list_id])
+  		@item = @list.items.find(params[:id])
+  		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 		@item.destroy
 
 		respond_to do |format|

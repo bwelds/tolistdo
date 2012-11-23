@@ -3,15 +3,18 @@ class ListsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def show
-  		@list = List.find(params[:id])
+  		@list = current_user.lists.find(params[:id])
+  		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 	end
 
 	def new
-		@list = List.new
+		@list = current_user.lists.new
 	end
 
 	def create
-		@list = List.new(params[:list])
+		@list = current_user.lists.new(params[:list])
 
 		respond_to do |format|
   			if @list.save
@@ -25,11 +28,17 @@ class ListsController < ApplicationController
 	end
 
 	def edit
-    	@list = List.find(params[:id])
+    	@list = current_user.lists.find(params[:id])
+    	rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
   	end
 
   	def update
-	    @list = List.find(params[:id])
+	    @list = current_user.lists.find(params[:id])
+	    rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 
 	    respond_to do |format|
 	      if @list.update_attributes(params[:list])
@@ -43,7 +52,10 @@ class ListsController < ApplicationController
 	end
 
 	def destroy
-		@list = List.find(params[:id])
+		@list = current_user.lists.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+  			flash[:warning] = "Stop playing around with your urls"
+  			redirect_to :root
 		@list.destroy
 
 		respond_to do |format|
