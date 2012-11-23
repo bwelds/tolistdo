@@ -2,13 +2,15 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
 	<div class="control-group">
-		<div><%= f.label :login, :class => "control-label" %>
+		<div>
+			<%= f.label :login, :class => "control-label" %>
 		  	<div class="controls">
 		  		<%= f.text_field :login %>
 		  	</div>
 		</div>
 		<br />
-		<div><%= f.label :password, :class => "control-label" %>
+		<div>
+			<%= f.label :password, :class => "control-label" %>
 			<div class="controls">
 				<%= f.password_field :password %>
 			</div>

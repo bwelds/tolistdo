@@ -1,25 +1,29 @@
-<%= form_for @list do |f| %>
+<%= form_for @list, :html => {:class => "form-horizontal"} do |f| %>
+	<div class="control-group">
+		<% if @list.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@list.errors.count, "error") %> prohibited this link from being saved:</h2>
 
-	<% if @list.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@list.errors.count, "error") %> prohibited this link from being saved:</h2>
+				<ul>
+					<% @list.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 
-			<ul>
-				<% @list.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-
-	<div class="field">
-		<%= f.label :name %>:<br />
-  		<%= f.text_field :name, :autofocus => true %>
-  	</div>
-	<div class="field">
-  		<%= f.hidden_field :user_id, :value => current_user.id %>
-  	</div>
-  	<div class="actions">
-  		<%= f.submit %>
-  	</div>
+		<div class="field">
+			<%= f.label :name, :class => "control-label" %>
+			<div class="controls">
+	  			<%= f.text_field :name, :autofocus => true %>
+	  		</div>
+	  	</div>
+	  	<br />
+		<div class="field">
+	  		<%= f.hidden_field :user_id, :value => current_user.id %>
+	  	</div>
+	  	<div class="actions controls">
+	  		<%= f.submit %>
+	  	</div>
+	</div>
 <% end %>

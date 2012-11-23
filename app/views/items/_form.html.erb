@@ -1,42 +1,54 @@
-<%= form_for [@list, @item] do |f| %>
+<%= form_for [@list, @item], :html => {:class => "form-horizontal"} do |f| %>
+	<div class="control-group">
+		<% if @item.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@item.errors.count, "error") %> prohibited this link from being saved:</h2>
 
-	<% if @item.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@item.errors.count, "error") %> prohibited this link from being saved:</h2>
+				<ul>
+					<% @item.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 
-			<ul>
-				<% @item.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
+		<div class="field">
+			<%= f.label :title, :class => "control-label" %>
+			<div class="controls">
+				<%= f.text_field :title, :autofocus => true %>
+			</div>
 		</div>
-	<% end %>
-
-	<div class="field">
-		<%= f.label :title %>
-  		<%= f.text_field :title, :autofocus => true %>
-  	</div>
-  	<div class="field">
-		<%= f.label :completed %>
-  		<%= f.check_box :completed %>
-  	</div>
-	<div class="field">
-		<%= f.label :priority %>
-  		<%= f.radio_button(:priority, 3) %> High
-		<%= f.radio_button(:priority, 2) %> Medium
-		<%= f.radio_button(:priority, 1) %> Low
-		
-  	</div>
-  	<div class="field">
-		<%= f.label :due_date %>
-  		<%= f.date_select :due_date, :default => 1.days.from_now, :start_year => Time.now.year, :order => [:month, :day, :year], :include_blank => true %>
-  	</div>
-	
-	<div class="field">
-		
-  		<%= f.hidden_field :list_id, :value => params[:list_id] %>
-  	</div>
-  	<div class="actions">
-  		<%= f.submit %>
-  	</div>
+		<br />
+		<div class="field">
+			<%= f.label :completed, :class => "control-label" %>
+			<div class="controls">
+				<%= f.check_box :completed %>
+			</div>
+		</div>
+		<br />
+		<div class="field">
+			
+			<%= f.label :priority, :class => "control-label" %>
+			<div class="controls">
+				<label class="radio inline"><%= f.radio_button(:priority, 3) %> High</label>
+				<label class="radio inline"><%= f.radio_button(:priority, 2) %> Medium</label>
+				<label class="radio inline"><%= f.radio_button(:priority, 1) %> Low</label>
+			</div>
+			
+		</div>
+		<br />
+			<div class="field">
+			<%= f.label :due_date, :class => "control-label" %>
+			<div class="controls">
+				<%= f.date_select :due_date, :default => 1.days.from_now, :start_year => Time.now.year, :order => [:month, :day, :year], :include_blank => true %>
+			</div>
+		</div>
+		<br />
+		<div class="field">
+			<%= f.hidden_field :list_id, :value => params[:list_id] %>
+		</div>
+		<div class="controls">
+			<%= f.submit %>
+		</div>
+		<br />
 <% end %>
